@@ -1,2 +1,2 @@
-# django
+# Django
 Web development practice
