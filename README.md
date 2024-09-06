@@ -1,6 +1,6 @@
 # Django
 # Web development practice
-1. <a href="1.md">How to install virtual environment in windows PC for django project.</a>
+1. <a href="How to delete data">How to install virtual environment in windows PC for django project.</a>
 2. How to create a project
 3. How to create a app
 4. How to add app in setting.py
