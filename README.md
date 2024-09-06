@@ -17,13 +17,14 @@
 15. How to delete data
 
 <hr>
+<h3>1</h3>
 <span id="section1">
-Install the python [ https://www.python.org/downloads/ ]
-Install the pip [ If not available in your PC ]
-pip install pipenv
-Create a folder in your directory and open a terminal at that direcoty
-pipenv shell
-Expected output [ (Practice-fViqD9Aw) G:> ]
-pipenv install django
+  - Install the python [ https://www.python.org/downloads/ ] <br>
+  - Install the pip [ If not available in your PC ]<br>
+  - pip install pipenv<br>
+  - Create a folder in your directory and open a terminal at that direcoty<br>
+  - pipenv shell<br>
+  - Expected output [ (Practice-fViqD9Aw) G:> ]<br>
+  - pipenv install django<br>
 </span>
 
