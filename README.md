@@ -16,7 +16,7 @@
 14. How to edit data
 15. How to delete data
 
-<h1>
+<hr>
 <span id="section1">
 Install the python [ https://www.python.org/downloads/ ]
 Install the pip [ If not available in your PC ]
