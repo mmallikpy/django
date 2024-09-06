@@ -14,4 +14,4 @@
 12. How to insert data in database
 13. How to view data from database
 14. How to edit data
-15. <h2 id="section15">How to delete data</h2>
+15. <span id="section15">How to delete data</span>
