@@ -1,7 +1,7 @@
 # Django
 # Web development practice
 1. <a href="#section1">How to install virtual environment in windows PC for django project.</a>
-2. How to create a project
+2. <a href="#section2">How to create a project</a>
 3. How to create a app
 4. How to add app in setting.py
 5. How to run server
@@ -27,4 +27,8 @@
   - Expected output [ (Practice-fViqD9Aw) G:> ]<br>
   - pipenv install django<br>
 </span>
+<h3>2</h3>
+<span id="section2">
+  - > python manage.py startproject PROJECTNAME
+<span">
 
