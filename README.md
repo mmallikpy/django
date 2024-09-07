@@ -54,3 +54,26 @@
 ]
 <span>
 
+<h3>5</h3>
+
+<span id="section5">
+  - > python manage.py runserver
+
+  Output:<br>
+  &emsp;&emsp; Starting development server at http://127.0.0.1:8000/<br>
+  - visit this url.<br>
+<span>
+
+<h3>6</h3>
+<span id="section6">
+  - Open the models.py file from your project folder.<br>
+  Example:<br><br><br>
+  from django.db import models <br><br><br>
+  class device(models.Model):<br>
+    &emsp;&emsp;device_name = models.CharField(max_length=100)<br>
+    &emsp;&emsp;device_ip = models.CharField(max_length=100)<br>
+    &emsp;&emsp;device_brand = models.CharField(max_length=100)<br>
+    &emsp;&emsp;device_type = models.CharField(max_length=100)<br>
+    &emsp;&emsp;device_users = models.IntegerField()<br>
+  
+<span>
