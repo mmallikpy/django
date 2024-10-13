@@ -1,0 +1,22 @@
+### 1. HTML part
+
+<a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+
+
+### 2. urls.py
+
+from .views import logMeOut
+
+urlpatterns = [
+  path('logout/', logMeOut, name='logout'),
+]
+
+
+### 3. views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
+
+@login_required
+def logMeOut(request):
+    logout(request)
+    return redirect('home')
