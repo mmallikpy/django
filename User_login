@@ -1,0 +1,60 @@
+### 1. home.html setting
+<form action="" method="post">
+	
+    {% csrf_token %}
+	
+	<div class="w-75">{{ loginForm.username }}</div>
+	
+    <div class="w-75 mt-2">{{ loginForm.password }}</div>
+	
+    <button class="w-25 mt-3 p-1 bg-success bg-gradient fs-5 rounded-1 fw-bold" type="submit"> LogIn <i class="fa-solid fa-right-to-bracket"></i> </button>
+	
+    <div class="d-flex align-content-end justify-content-between mt-3">
+        <a class="text-decoration-none fw-bold" href="{% url 'registration' %}">SignUp <i class="fa-solid fa-user-plus"></i></a>
+        <span class="text-danger">|</span>
+        <a class="text-decoration-none fw-bold" href="{% url 'password_reset' %}">Forget-Password?</a>
+    </div>
+	
+</form>
+
+
+### 2. urls.py
+
+from .views import home_view
+
+urlpatterns = [
+    path("", home_view, name='home'),
+]
+
+
+### 3. views.py
+
+from django.contrib.auth import authenticate, login
+from .forms import LoginForm
+
+
+def home_view(request):
+    form  = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('test')
+            else:
+                return redirect('home')
+    return render(request, 'loginapp/home.html', {"loginForm": form})
+
+
+
+### 4. forms.py
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.forms.widgets import PasswordInput, TextInput
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': "Username", 'class':'rounded-1 p-2 custom-input border border-primary w-100'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder': "Password", 'class':'rounded-1 p-2 custom-input border border-primary w-100'}))
