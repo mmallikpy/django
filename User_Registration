@@ -1,0 +1,75 @@
+### 1. HTML part
+
+      <form method="post" action="{% url 'registration' %}">
+        {% csrf_token %} <br />
+        {% if userCre.errors %}
+
+        <div class="alert alert-danger">
+          <ul>
+            {% for field, errors in userCre.errors.items %}
+            <br />
+            {% for error in errors %}
+            <li>{{ field }}: {{ error }}</li>
+            {% endfor %} {% endfor %}
+          </ul>
+        </div>
+
+        {% endif %} {% for x in userCre %} {{ x }} {% endfor %}
+        <div class="mt-2">
+          <button class="btn btn-success" type="submit">Register</button>
+        </div>
+      </form>
+
+
+### 2. urls.py
+
+from .views import registration_view
+
+urlpatterns = [
+  path('registratio/', registration_view, name='registration'),
+]
+
+
+### views.py
+from .forms import registrationForm
+
+def registration_view(request):
+    UserRegF = registrationForm() 
+    if request.method == 'POST':        
+        UserRegF = registrationForm(request.POST)
+        if UserRegF.is_valid():
+            UserRegF.save()
+            return redirect('home')
+    return render(request, 'loginapp/registration.html', {'userCre': UserRegF})
+
+
+
+### forms.py
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
+class registrationForm(UserCreationForm):
+    class Meta:
+        model =User
+        fields = ['username', 'email', 'password1', 'password2']
+        
+    def __init__(self, *args, **kwargs):
+        super(registrationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'placeholder': "Enter username",
+            'class': 'p-2 custom-input border border-primary w-50 rounded-1'
+        })
+        self.fields['email'].widget.attrs.update({
+            'placeholder': "Enter email",
+            'class': 'p-2 custom-input border border-primary w-50 mt-3 rounded-1'
+        })
+        self.fields['password1'].widget.attrs.update({
+            'placeholder': "Enter your password",
+            'class': 'p-2 custom-input border border-primary w-50 mt-3 rounded-1'
+        })
+        self.fields['password2'].widget.attrs.update({
+            'placeholder': "Enter your confirm password",
+            'class': 'p-2 custom-input border border-primary w-50 mt-3 rounded-1'
+        }) 
