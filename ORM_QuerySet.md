@@ -100,3 +100,43 @@ Cars.objects.filter(brand='Maroti', publish_year=2022).delete()<br>
 del_values = Cars.objects.filter(brand='Maroti', publish_year=2022)<br>
 del_values.delete()<br>
 
+# ----------------------- QuerySet examples ----------------------------
+<h3>Model example</h3>
+class Address(models.Model):<br>
+    id = models.IntegerField(primary_key=True)<br>
+    customerid = models.IntegerField()<br>
+    firstname = models.CharField(max_length=50)<br>
+    lastname = models.CharField(max_length=50)<br>
+    address1 = models.CharField(max_length=100)<br>
+    city = models.CharField(null=True)<br>
+    zip = models.CharField(null=True)<br>
+<br>
+queryset = Address.objects.all()<br>
+str(queryset.query)
+
+
+>>> queryset = Address.objects.all()
+>>> str(queryset.query)      [For check the queryset to SQL query]
+'SELECT "loginapp_address"."id", "loginapp_address"."customerid", "loginapp_address"."firstname", "loginapp_address"."lastname", "loginapp_address"."address1", "loginapp_address"."city", "loginapp_address"."zip" FROM "loginapp_address"'
+>>>
+
+
+Address.objects.filter(firstname__startswith='S')
+Address.objects.filter(lastname__startswith='D')
+Address.objects.filter(firstname__startswith='S') | Address.objects.filter(lastname__startswith='D')
+Address.objects.filter(firstname__startswith='S').values() | Address.objects.filter(lastname__startswith='D').values()
+
+#
+from django.db.models import Q <br>
+Address.objects.filter(Q(firstname__startswith='S') | Q(lastname__startswith='D'))<br>
+Address.objects.filter(firstname__startswith='D', lastname__startswith='S')<br>
+Address.objects.filter(Q(firstname__startswith='D') & Q(lastname__startswith='S'))<br>
+Address.objects.filter(Q(firstname__startswith='A') & Q(lastname__startswith='B'))<br>.
+User.objects.filter(~Q(id=2))    [Not example]
+
+#
+<h3>Union of two querysets</h3>h3?
+
+
+
+
