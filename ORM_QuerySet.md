@@ -132,11 +132,23 @@ Address.objects.filter(Q(firstname__startswith='S') | Q(lastname__startswith='D'
 Address.objects.filter(firstname__startswith='D', lastname__startswith='S')<br>
 Address.objects.filter(Q(firstname__startswith='D') & Q(lastname__startswith='S'))<br>
 Address.objects.filter(Q(firstname__startswith='A') & Q(lastname__startswith='B'))<br>.
-User.objects.filter(~Q(id=2))    [Not example]
+User.objects.filter(~Q(id=2))    [~ = Note]<br>
+User.objects.filter(id__gte=2)   [gte = Greaterthan equal]<br>
+User.objects.filter(id__lte=2)   [lte = Less than equal]<br>
 
 #
-<h3>Union of two querysets</h3>h3?
+<h3>Union of two querysets</h3><br>
+q1 = User.objects.filter(id__gte=2)<br>
+q2 = User.objects.filter(id__lte=2)<br>
+q1.union(q2)<br>
+Hero.objects.all().values_list("name", "gender").union(Villain.objects.all().values_list("name", "gender"))<br>
 
+Address.objects.filter(firstname__startswith='M').values('firstname')<br>
+Address.objects.filter(firstname__startswith='M').values('firstname', 'lastname')<br>
+Address.objects.filter(firstname__startswith="M").only('firstname', 'lastname')<br>     [only = It's return the id ]
+
+
+#
 
 
 
