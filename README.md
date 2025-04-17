@@ -29,7 +29,7 @@
 </span>
 <h3>2</h3>
 <span id="section2">
-  - > python manage.py startproject PROJECT_NAME
+  - > django-admin startproject PROJECT_NAME
 <span">
 
 <h3>3</h3>
