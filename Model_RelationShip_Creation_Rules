@@ -1,0 +1,5 @@
+| Relationship | What do you want?                      | Django Field    | Where to put it         |
+| ------------ | -------------------------------------- | --------------- | ----------------------- |
+| One-to-One   | Each A has one B, each B has one A     | OneToOneField   | In “A or B” side model  |
+| One-to-Many  | Many A have one B, each B has many A   | ForeignKey      | In “many” side model    |
+| Many-to-Many | Many A have many B, many B have many A | ManyToManyField | In one model only       |
