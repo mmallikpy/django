@@ -1,0 +1,126 @@
+Custom validation checklist grouped by category
+
+
+A. User & Account Validations
+
+1. Username must be unique
+2. Username must be alphanumeric
+3. Username cannot contain spaces or special characters
+4. Username cannot be on a reserved/blocked list
+5. User must not reuse a previous password
+6. User cannot register if account is suspended/banned
+7. User cannot submit form more than N times per hour/day
+8. User must confirm their email with a one-time code
+9. User cannot use certain usernames (e.g., admin, superuser)
+10. User must accept terms and conditions
+
+---
+
+B. Email Validations
+
+1. Email must be unique
+2. Email must end with a specific domain (e.g., .edu, @company.com)
+3. Email must not be disposable/temporary
+4. Email and confirm email must match
+5. Email must not already be in use
+6. Email must not be from a blacklisted provider
+
+---
+
+C. Password Validations
+
+1. Password and confirm password must match
+2. Password must meet complexity requirements (length, number, symbol)
+3. Password must not be too similar to username/email
+4. Password must not be a previously used password
+5. Password must not be a commonly used password (like “password123”)
+
+---
+
+D. Date & Time Validations
+
+1. Date cannot be in the past
+2. Date cannot be in the future
+3. Start date must be before end date
+4. Dates must be at least N days apart
+5. Date must not be a holiday or blackout date
+6. Time must be within business hours
+7. Reservation times must not overlap existing reservations
+8. User must be at least a certain age (date of birth validation)
+9. Age calculated from birthdate must match declared age
+10. Submission must be within a certain registration window
+
+---
+
+E. File & Image Upload Validations
+
+1. File must be a certain type (PDF, JPG, PNG, etc.)
+2. File size must not exceed X MB
+3. File name must follow a naming convention
+4. Image must have certain dimensions or aspect ratio
+5. File must not be infected (scanned for viruses)
+6. Multiple files total size/number must not exceed limit
+7. Uploaded file’s content must match required template
+8. File cannot have prohibited words in the name
+9. Uploaded file must not duplicate existing file
+10. File extension must be allowed
+
+---
+
+F. Numeric & Range Validations
+
+1. Number must be positive
+2. Number must be within a certain range
+3. Value must not exceed user’s available balance or quota
+4. Quantity must not be more than available inventory
+5. Two fields’ sum must match a set value
+6. Field must not have more than N decimal places
+7. Age must be over/under a threshold
+8. Order total must meet minimum value
+9. Value cannot be default placeholder
+10. Percentage fields must add up to 100%
+
+---
+
+G. Choice & Relationship Validations
+
+1. Choice must not be forbidden
+2. Choice must be in a valid/allowed list
+3. Two fields must not have the same value
+4. Must select at least one out of several checkboxes
+5. Must not select conflicting options
+6. Selected value must exist in another model/table
+7. User cannot select an option they already have
+8. Dependent dropdowns must match parent value
+9. Dynamic choice must be up-to-date with DB
+10. Related foreign key must meet a status requirement
+
+---
+
+H. Text & Content Validations
+
+1. Text must not contain prohibited words
+2. Text must not contain HTML/script tags
+3. Text length must be within min/max limits
+4. Comment must not match known spam pattern
+5. No repeated characters or sequences
+6. No emoji or special characters (if restricted)
+7. Text must match a regex pattern
+8. Input must not be only whitespace
+9. No contact info allowed in open comment
+10. Minimum/maximum number of lines/words
+
+---
+
+I. Cross-field & Complex Logic Validations
+
+1. At least one of several fields must be filled
+2. If one field is filled, another is required
+3. Two fields must have related/compatible values
+4. Multiple fields must be filled in a certain order
+5. Field must be empty if another is filled
+6. Fields must not create circular references
+7. Only one submission per user in a given context
+8. Sum or combination of fields must meet logic
+9. If option A is selected, option B is forbidden
+10. Submission cannot conflict with another record’s data
