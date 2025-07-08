@@ -35,3 +35,50 @@ def mfv(request):
 def dataread(request):
     all_data = fvmodel.objects.all()
     return render(request, './fv/viewsdata.html', {'alldata': all_data})
+
+
+# Normal form html part index.html
+
+<div class="container">
+  <h1 class="text-primary mt-5 mb-5">Normal Form Validations</h1>
+  <form method="post">
+    {% csrf_token %} {% for field in form %}
+      <div>
+        {{ field }} {% if field.errors %}
+          <div style="color: red">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+    <!-- Success Message -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-4">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  </form>
+</div>
+
+
+# Model form html part mfvhtml.html
+
+<div class="container">
+  <h1 class="text-primary mt-5 mb-5">Model Form Validations</h1>
+  <form method="post">
+    {% csrf_token %}
+    {% for x in form %}
+      {{ x }}
+      {% if x.errors %}
+        <div style="color: red">{{ x.errors }}</div>
+      {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-dark mt-5">Sbumit</button>
+    <!-- Success Message -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-4">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  </form>
+</div>
+
