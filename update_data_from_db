@@ -1,0 +1,86 @@
+# CRUD
+# U = Update
+# Update a data from database
+
+Step1: URL
+
+path('edit/<int:pk>/', edit_fv, name='edit_fv-view')
+
+Step2: Model
+
+class fvmodel(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+
+
+Step3: Update the data
+
+from django.shortcuts import render, redirect, get_object_or_404
+from . forms import mfv_form
+from .models import fvmodel
+
+def edit_fv(request, pk):
+    obj = get_object_or_404(fvmodel, pk=pk)
+    if request.method == "POST":
+        form = mfv_form(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('dataread-view')
+    else:
+        form = mfv_form(instance=obj)
+    
+    return render(request, './fv/edit.html', {'form': form})
+
+Step4: html part
+# This page is viewsdata page. We create update button in this page, after click the button it will redirect the edit.html
+
+<div class="container">
+  <h1 class="text-primary mt-5 mb-5">View the data</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in alldata %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ x.name }}</td>
+        <td>{{ x.email }}</td>
+        <td>
+          <a
+            type="submit"
+            class="btn btn-secondary"
+            href="{% url 'edit_fv-view' pk=x.pk %}"
+          >
+            Update
+          </a>
+          <a
+            type="submit"
+            class="btn btn-danger"
+            href="{% url 'delete_fv-view' pk=x.pk %}"
+          >
+            Delete
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+#Step5: html part
+
+<div class="container">
+  <h1 class="text-primary mt-5 mb-5">Edit page</h1>
+  <h2>Edit FV</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="btn btn-info">Update Data</button>
+  </form>
+</div>
