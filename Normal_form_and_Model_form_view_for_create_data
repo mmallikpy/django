@@ -1,0 +1,37 @@
+# Normal form views and save the data (Create)
+def home(request):
+    success = False
+    if request.method == "POST":
+        form = fvforms(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            
+            fvmodel.objects.create(
+                name=name,
+                email=email,
+            )
+            messages.success(request, 'Save successfully')  #Success message display after save the data.
+            return redirect('fv-home-view')
+            
+    else:
+        form = fvforms()
+    return render(request, './fv/index.html', {'form':form, 'success': success})
+
+# Model form views and save the data (Create)
+def mfv(request):
+    if request.method == "POST":
+        form = mfv_form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Save successfully') #Success message display after save the data.
+            return redirect('mfv-view') 
+    else:
+        form = mfv_form()
+        
+    return render(request, './fv/mfvhtml.html', {'form': form})
+
+# Read the data from database
+def dataread(request):
+    all_data = fvmodel.objects.all()
+    return render(request, './fv/viewsdata.html', {'alldata': all_data})
