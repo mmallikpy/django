@@ -1,0 +1,56 @@
+# setting.py
+
+MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_URL = '/uploads/'
+
+
+Project folder structure
+--------------------------------------------
+D:.
+├───uploads
+│   ├───all_type_file
+│   ├───images
+│   └───pdf
+├───upload_app
+│   ├───migrations
+│   ├───static
+│   │   ├───js
+│   │   └───upload_app
+│   │       └───css
+│   └───templates
+│       └───upload_app
+└───upload_project
+
+# models.py
+
+class Files_Upload_Model(models.Model):
+    all_file = models.FileField(upload_to='all_type_file', blank=True, null=True)
+    image_field = models.ImageField(upload_to='images', blank=True, null=True)
+    pdf_field = models.FileField(upload_to='pdf', blank=True, null=True)
+
+# urls.py
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('uploads/',image_view, name="image_view")
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# views.py
+def image_view(request):    
+    all_file = Files_Upload_Model.objects.all()
+    return render(request, './upload_app/image_view.html', {'all_file': all_file })
+
+# html file part
+
+{% extends './base.html' %}
+
+{% block maincontent %}
+  {% for x in all_file %}
+    <div>
+      <img src="{{ x.image_field }}" width="250" height="350" class="rounded float-start m-2 border border-3 bg-dark object-fit-cover" />
+    </div>
+  {% endfor %}
+{% endblock %}
